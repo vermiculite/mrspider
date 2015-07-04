@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": "",
   "scripts": {
-    "test": "mocha --require test/setup --recursive"
+    "test": "mocha --require test/setup --recursive --watch"
   },
   "author": "Sean Hayes <seanowenhayes@gmail.com>",
   "dependencies": {
