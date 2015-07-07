@@ -1,6 +1,6 @@
 'use strict';
 
-var Spider = require('.');
+var Spider = require('../lib/');
 
 var s = new Spider();
 
