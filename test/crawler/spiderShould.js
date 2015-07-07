@@ -73,19 +73,6 @@ describe('spider', function() {
             var returns = spider.addUrl();
             returns.should.equal(spider);
         });
-
-
-        it('should add a url to the urls array', function() {
-            spider.addUrl('http://google.com');
-            spider.urls.should.have.length(1);
-        });
-
-
-        //it('should not add the same url to the urls array twive', function() {
-        //    spider.addUrl('http://google.com');
-        //    spider.addUrl('http://google.com');
-        //    spider.urls.should.have.length(1);
-        //});
     });
 
     describe('#addLevel', function() {
