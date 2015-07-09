@@ -1,13 +1,20 @@
 {
-  "name": "parking",
-  "version": "0.0.0",
-  "description": "search all parking places.",
-  "main": "index.js",
-  "repository": "",
+  "name": "mrspider",
+  "description": "simple polite crawling of the web.",
+  "tags": ["dom","javascript","crawling","jquery", "spider", "spidering"],
+  "version": "1.0.0",
+  "author": "Sean Hayes <seanowenhayess@gmail.com>",
+  "main": "./index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vermiculite/mrspider.git"
+  },
+  "bugs": {
+    "web": "https://github.com/vermiculite/mrspider/issues"
+  },
   "scripts": {
     "test": "mocha --require test/setup --recursive --watch"
   },
-  "author": "Sean Hayes <seanowenhayes@gmail.com>",
   "dependencies": {
     "cheerio": "^0.19.0",
     "request": "^2.58.0"
