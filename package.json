@@ -1,7 +1,14 @@
 {
   "name": "mrspider",
   "description": "simple polite crawling of the web.",
-  "tags": ["dom","javascript","crawling","jquery", "spider", "spidering"],
+  "tags": [
+    "dom",
+    "javascript",
+    "crawling",
+    "jquery",
+    "spider",
+    "spidering"
+  ],
   "version": "1.0.0",
   "author": "Sean Hayes <seanowenhayess@gmail.com>",
   "main": "./index",
@@ -10,10 +17,11 @@
     "url": "https://github.com/vermiculite/mrspider.git"
   },
   "bugs": {
-    "web": "https://github.com/vermiculite/mrspider/issues"
+    "url": "https://github.com/vermiculite/mrspider/issues"
   },
   "scripts": {
-    "test": "mocha --require test/setup --recursive --watch"
+    "test": "mocha --require test/setup --recursive --watch",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --require test/setup --reporter dot --check-leaks test/ --recursive"
   },
   "dependencies": {
     "cheerio": "^0.19.0",
@@ -21,6 +29,7 @@
   },
   "devDependencies": {
     "chai": "^3.0.0",
+    "istanbul": "^0.3.17",
     "mocha": "^2.2.5",
     "nock": "^2.6.0",
     "sinon": "^1.15.3"

@@ -45,6 +45,24 @@ describe('WebPage', function() {
         });
 
 
+        it('should load the supplied url erroneousl and not call setContent', function(done) {
+            var target = nock('http://myapp.iriscouch.com')
+                .get('/users/1')
+                .reply(200, null);
+            var webpage = new WebPage();
+            var setContentSpy = sinon.spy(webpage, 'setContent');
+
+
+            webpage.load('http://myapp.iriscouch.com/users/1');
+
+            webpage.on('error', function() {
+                setContentSpy.called.should.equal(false);
+                done();
+            });
+
+        });
+
+
         it('should load the supplied url', function(done) {
             var target = nock('http://myapp.iriscouch.com')
                 .get('/users/1')
