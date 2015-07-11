@@ -3,7 +3,7 @@ Crawl the web politely.
 
 ```js
 
-var Spider = require('..');
+var Spider = require('mrspider');
 
 var s = new Spider();
 
