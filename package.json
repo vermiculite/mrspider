@@ -11,6 +11,7 @@
   ],
   "version": "1.0.1",
   "author": "Sean Hayes <seanowenhayess@gmail.com>",
+  "license": "MIT",
   "main": "./index",
   "repository": {
     "type": "git",
@@ -20,7 +21,8 @@
     "url": "https://github.com/vermiculite/mrspider/issues"
   },
   "scripts": {
-    "test": "mocha --require test/setup --recursive --watch",
+    "test": "mocha --require test/setup --recursive",
+    "test-watch": "mocha --require test/setup --recursive --watch",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --require test/setup --reporter dot --check-leaks test/ --recursive"
   },
   "dependencies": {
