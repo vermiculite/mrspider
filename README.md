@@ -1,10 +1,10 @@
 ![alt tag](https://travis-ci.org/vermiculite/mrspider.svg?branch=master)
 
 # mrspider
+#### Crawl the web politely.
 
 ![alt tag](https://farm6.staticflickr.com/5124/5351718130_23249386c5_o.jpg)
 
-Crawl the web politely.
 
 ```js
 
