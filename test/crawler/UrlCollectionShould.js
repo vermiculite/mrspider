@@ -28,13 +28,20 @@ describe('UrlCollection', function() {
             urlCollection.add('http://google.com');
             urlCollection.hasNext().should.equal(true);
         });
+
+
+        it('should return false after adding to the collection and removing', function () {
+            urlCollection.add('http://google.com');
+            urlCollection.next();
+            urlCollection.hasNext().should.equal(false);
+        });
     });
 
 
     describe('#add', function () {
 
 
-        it('should add a urll to the collection', function () {
+        it('should add a url to the collection', function () {
             urlCollection.add('http://google.com');
             urlCollection.hasNext().should.equal(true);
         });
@@ -45,6 +52,16 @@ describe('UrlCollection', function() {
             urlCollection.hasNext().should.equal(true);
             urlCollection.next();
             urlCollection.hasNext().should.equal(false);
+        });
+
+
+        it('should not add the same url twice', function () {
+            urlCollection.add('http://google.com');
+            urlCollection.add('http://google.com');
+            urlCollection.hasNext().should.equal(true);
+            urlCollection.next();
+            urlCollection.hasNext().should.equal(false);
+            should.not.exist(urlCollection.next());
         });
 
 

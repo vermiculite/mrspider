@@ -9,7 +9,7 @@
     "spider",
     "spidering"
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Sean Hayes <seanowenhayess@gmail.com>",
   "main": "./index",
   "repository": {

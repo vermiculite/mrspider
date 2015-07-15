@@ -108,11 +108,28 @@ describe('spider', function() {
         });
 
 
-        it('should pop a url from the urls', function() {
-            //   var popSpy = sinon.spy(spider.urls, 'pop');
-            //   spider.crawl();
-            //   popSpy.called.should.equal(true);
-            //   spider.urls.pop.restore();
+        it('should ask for the next url', function() {
+               var nextSpy = sinon.spy(spider.urls, 'next');
+               spider.crawl();
+               nextSpy.called.should.equal(true);
+               spider.urls.next.restore();
+        });
+
+
+        it('should load the webpage if it has a url', function () {
+            var webpageLoadSpy = sinon.spy(spider.webpage, 'load');
+            spider.addUrl('http://google.com');
+            spider.crawl();
+            webpageLoadSpy.called.should.equal(true);
+            spider.webpage.load.restore();
+        });
+
+
+        it('should load the webpage if it has not got a url', function () {
+            var webpageLoadSpy = sinon.spy(spider.webpage, 'load');
+            spider.crawl();
+            webpageLoadSpy.called.should.equal(false);
+            spider.webpage.load.restore();
         });
     });
 
@@ -120,7 +137,7 @@ describe('spider', function() {
     describe('#executeLevels', function() {
 
 
-        it('should call all levels when webpage loads', function() {
+        it('should call all levels when webpage loads given a matching pattern', function() {
             var actionSpy = sinon.spy();
             var level = new Level({
                 pattern: /http/,
@@ -132,6 +149,21 @@ describe('spider', function() {
                     url: 'http://google.com'
                 });
             actionSpy.called.should.equal(true);
+        });
+
+
+        it('should not call any levels when webpage loads given a nonmatching pattern', function() {
+            var actionSpy = sinon.spy();
+            var level = new Level({
+                pattern: /http:\/\/yahoo.com/,
+                action: actionSpy
+            });
+            var spider = new Spider();
+            spider.addLevel(level)
+                .executeLevels({
+                    url: 'http://google.com'
+                });
+            actionSpy.called.should.equal(false);
         });
 
     });
