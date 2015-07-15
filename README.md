@@ -1,3 +1,5 @@
+![alt tag](https://travis-ci.org/vermiculite/mrspider.svg?branch=master)
+
 # mrspider
 Crawl the web politely.
 
