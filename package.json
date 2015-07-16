@@ -1,5 +1,6 @@
 {
   "name": "mrspider",
+  "productName": "Mr Spider",
   "description": "simple polite crawling of the web.",
   "tags": [
     "dom",
