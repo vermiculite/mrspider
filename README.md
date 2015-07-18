@@ -1,7 +1,8 @@
 ![alt tag](https://travis-ci.org/vermiculite/mrspider.svg?branch=master)
 
-# mrspider
-#### Crawl the web politely.
+# Mr Spider
+## Crawl the web politely.
+#####For use with [io.js](https://iojs.org/ "io.js") > 2.0Add info that wsay 
 
 ```js
 
@@ -63,7 +64,7 @@ $ npm i mrspider --save
   * Super simple api.
   * Use jquery selectors to scrape links/ information.
   * Use the full power of JavaScript giving you great flexibility.
-  
+
 ## Tests
 
 To run the test suite, first install the dependencies, then run `npm test`:
