@@ -1,3 +1,5 @@
+[![NPM](https://nodei.co/npm/mrspider.png?downloads=true&downloadRank=true)](https://nodei.co/npm/mrspider/)
+
 ![alt tag](https://travis-ci.org/vermiculite/mrspider.svg?branch=master)
 
 # Mr Spider
