@@ -85,13 +85,13 @@ describe('spider', function () {
         });
 
 
-        it('should add a level to the crawler', function () {
+        it('should add a level to the unit', function () {
             spider.addLevel(level);
             spider.levels.should.be.an('array').with.length(1);
         });
 
 
-        it('should add a level instance to the crawler', function () {
+        it('should add a level instance to the unit', function () {
             spider.addLevel(level);
             spider.levels[0].should.be.an.instanceOf(Level);
         });
@@ -173,7 +173,7 @@ describe('spider', function () {
     describe('#stop', function () {
 
 
-        it('should stop the crawler when called', function () {
+        it('should stop the unit when called', function () {
             var clock = sinon.useFakeTimers();
             var spider = new Spider();
             var crawlSpy = sinon.spy(spider, 'crawl');
@@ -189,7 +189,7 @@ describe('spider', function () {
         });
 
 
-        it('should not throw an error when called on a non started crawler.', function () {
+        it('should not throw an error when called on a non started unit.', function () {
             var spider = new Spider();
             (function () {
                 spider.stop();
