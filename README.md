@@ -1,6 +1,7 @@
 [![NPM](https://nodei.co/npm/mrspider.png?downloads=true&downloadRank=true)](https://nodei.co/npm/mrspider/)
 
 ![alt tag](https://travis-ci.org/vermiculite/mrspider.svg?branch=master)
+[![Coverage Status](https://coveralls.io/repos/vermiculite/mrspider/badge.svg?branch=master&service=github)](https://coveralls.io/github/vermiculite/mrspider?branch=master)
 
 # Mr Spider
 ## Crawl the web politely.
