@@ -210,6 +210,7 @@ describe('spider', function () {
             var ghi = nock('http://ghi.com')
                 .get('/')
                 .reply(200, 'okicoke');
+
             spider
                 .addUrl('http://abc.com/')
                 .addLevel({
@@ -230,6 +231,57 @@ describe('spider', function () {
             spider.webpage.on('load', function (webpage) {
                 console.log('Loaded a page... %s', webpage.url);
                 if (webpage.url === 'http://ghi.com') {
+                    abc.done();
+                    def.done();
+                    ghi.done();
+                    stopSpy.called.should.equal(true);
+                    done();
+                }
+            });
+        });
+
+
+
+        it('should not be called when request are outstanding', function (done) {
+            this.timeout(10000);
+            var spider = new Spider();
+            var stopSpy = sinon.spy(spider, 'stop');
+            var aaa = nock('http://aaa.com')
+                .get('/')
+                .reply(200, 'okidoke');
+            var abc = nock('http://abc.com')
+                .get('/')
+                .delay(2000)
+                .reply(200, 'okidoke');
+            var def = nock('http://def.com')
+                .get('/')
+                .reply(200, 'okidokey');
+            var ghi = nock('http://ghi.com')
+                .get('/')
+                .reply(200, 'okicoke');
+
+            spider
+                .addUrl('http://aaa.com')
+                .addUrl('http://abc.com/')
+                .addLevel({
+                    pattern: /abc.com/,
+                    action: function () {
+                        console.log('abc');
+                        spider.addUrl('http://def.com');
+                    }
+                })
+                .addLevel({
+                    pattern: /def.com/,
+                    action: function () {
+                        console.log('def');
+                        spider.addUrl('http://ghi.com');
+                    }
+                }).start();
+
+            spider.webpage.on('load', function (webpage) {
+                console.log('Loaded a page... %s', webpage.url);
+                if (webpage.url === 'http://ghi.com') {
+                    aaa.done();
                     abc.done();
                     def.done();
                     ghi.done();
