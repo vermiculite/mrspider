@@ -21,6 +21,16 @@
   "bugs": {
     "url": "https://github.com/vermiculite/mrspider/issues"
   },
+  "keywords": [
+    "polite",
+    "spider",
+    "crawler",
+    "crawling",
+    "spidering",
+    "scraping",
+    "scraper",
+    "screenscraper"
+  ],
   "scripts": {
     "test": "mocha --require test/setup --recursive",
     "test-watch": "mocha --require test/setup --recursive --watch",
