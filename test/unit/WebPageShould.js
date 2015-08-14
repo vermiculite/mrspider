@@ -1,7 +1,15 @@
 'use strict';
-var webpage = require('../../lib/WebPage');
+var WebPage = require('../../lib/WebPage');
 
 describe('webPage', function () {
+
+    var webpage;
+
+
+    beforeEach(function() {
+        webpage = new WebPage();
+    });
+
 
     afterEach(function () {
         webpage.removeAllListeners();
