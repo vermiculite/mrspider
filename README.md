@@ -5,7 +5,6 @@
 
 # Mr Spider
 ## Crawl the web politely.
-For use with [io.js](https://iojs.org/ "io.js") > 2.0 
 
 ```js
 
