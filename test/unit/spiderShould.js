@@ -170,6 +170,37 @@ describe('spider', function () {
     });
 
 
+    describe('#addErrorHandler', function() {
+
+
+        it('should throw an error given a non existant handler', function() {
+            var spider = new Spider();
+            (function () {
+                spider.addErrorHandler(null);
+            }).should.throw(Error);
+        });
+
+
+        it('should throw an error given a non function handler', function() {
+            var spider = new Spider();
+            (function () {
+                spider.addErrorHandler('I am a string');
+            }).should.throw(Error);
+        });
+
+
+        it('should call all added handlers given a page error', function() {
+            var spies = [sinon.spy(), sinon.spy(), sinon.spy()];
+            var spider = new Spider();
+            spies.forEach(spider.addErrorHandler, spider);
+            spider.webpage.emit('error', {url: 'test'});
+            spies.forEach(function(spy) {
+                spy.called.should.equal(true);
+            });
+        });
+    });
+
+
     describe('#stop', function () {
 
 
