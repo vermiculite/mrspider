@@ -198,6 +198,14 @@ describe('spider', function () {
                 spy.called.should.equal(true);
             });
         });
+
+
+        it('should return itself to allow chaining', function() {
+            var spy = sinon.spy();
+            var spider = new Spider();
+            var isSpider = spider.addErrorHandler(spy);
+            isSpider.should.equal(spider);
+        });
     });
 
 
