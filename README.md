@@ -19,8 +19,8 @@ s.addUrl('http://blog.scrapinghub.com')
          * */
         pattern: /http:\/\/blog.scrapinghub.com/,
         action: function (webpage) {
-            // webpage.dom is a jquery like object
-            var $ = webpage.dom;
+            // webpage.$() returns a jquery like object
+            var $ = webpage.$();
             $('ul li a').each(function() {
                 var link = $(this).attr('href');
                 console.log(link);

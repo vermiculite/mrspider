@@ -19,15 +19,15 @@ describe('webPage', function () {
     describe('#setContent', function () {
 
 
-        it('should set dom property', function () {
+        it('should set content property', function () {
             webpage.setContent('<h1>Hello</h1>');
-            should.exist(webpage.dom);
+            should.exist(webpage.content);
         });
 
 
         it('should set dom property as jquery like', function () {
             webpage.setContent('<h1>Hello</h1>');
-            var result = webpage.dom('h1').text();
+            var result = webpage.$()('h1').text();
             result.should.equal('Hello');
 
         });
@@ -98,8 +98,8 @@ describe('webPage', function () {
             webpage.load('http://myapp.iriscouch.com/users/1');
 
             webpage.on('load', function (webpage) {
-                should.exist(webpage.dom);
-                webpage.dom('h1').text().should.equal('reply');
+                should.exist(webpage.$());
+                webpage.$()('h1').text().should.equal('reply');
                 target.done();
                 done();
             });
@@ -116,7 +116,7 @@ describe('webPage', function () {
 
             webpage.on('load', function (webpage) {
                 webpage.url.should.equal('http://myapp.iriscouch.com/users/1');
-                should.exist(webpage.dom);
+                should.exist(webpage.$());
                 done();
             });
 

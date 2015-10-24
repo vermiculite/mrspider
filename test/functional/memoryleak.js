@@ -14,8 +14,8 @@ spider
     {
         pattern: /itunes.apple.com\/us\/genre\/*/,
         action: function (webpage) {
-            var $ = webpage.dom;
             console.log("Fetching page: %s, for the %s th time", webpage.url, ++counter);
+            var $ = webpage.$();
             // spider all genres
             $('div#genre-nav.main.nav a').each(function () {
                 spider.addUrl($(this).attr('href'));
@@ -27,7 +27,7 @@ spider
             // spider all numbered pages of letters per genre
             $('div#selectedgenre ul.list.paginate li a').each(function () {
                 spider.addUrl(
-                    $(this).attr('href')
+                    webpage.css(this).attr('href')
                 );
             });
         }

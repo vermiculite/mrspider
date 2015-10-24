@@ -10,7 +10,7 @@
     "spider",
     "spidering"
   ],
-  "version": "1.4.1",
+  "version": "2.0.0",
   "author": "Sean Hayes <seanowenhayes@gmail.com>",
   "license": "MIT",
   "main": "./index",
