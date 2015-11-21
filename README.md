@@ -70,3 +70,6 @@ $ npm i mrspider --save
 ## Tests
 
 To run the test suite, first install the dependencies, then run `npm test`:
+
+## Future
+Add middleware.

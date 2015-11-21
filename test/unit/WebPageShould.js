@@ -124,4 +124,15 @@ describe('webPage', function () {
 
 
     });
+
+    describe('#raw', function() {
+
+
+        it('should return the raw page as a string given a page with content', function() {
+            var content = '<html><head><title></title></head><body></body></html>';
+            webpage.setContent(content);
+            var raw = webpage.raw();
+            raw.should.equal(content);
+        });
+    });
 });
