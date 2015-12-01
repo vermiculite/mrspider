@@ -38,7 +38,6 @@
     "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
   },
   "dependencies": {
-    "cheerio": "^0.19.0",
     "request": "^2.58.0",
     "tough-cookie": "^2.0.0"
   },

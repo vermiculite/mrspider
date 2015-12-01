@@ -1,6 +1,5 @@
 'use strict';
 var Spider = require('../../lib/index');
-var Level = require('../../lib/Level');
 
 describe('spider', function () {
 
@@ -76,30 +75,6 @@ describe('spider', function () {
         });
     });
 
-    describe('#addLevel', function () {
-
-
-        it('should return an instance of spider', function () {
-            var returns = spider.addLevel(level);
-            returns.should.equal(spider);
-        });
-
-
-        it('should add a level to the unit', function () {
-            spider.addLevel(level);
-            spider.levels.should.be.an('array').with.length(1);
-        });
-
-
-        it('should add a level instance to the unit', function () {
-            spider.addLevel(level);
-            spider.levels[0].should.be.an.instanceOf(Level);
-        });
-
-
-    });
-
-
     describe('#crawl', function () {
 
 
@@ -133,42 +108,6 @@ describe('spider', function () {
             spider.webpage.load.restore();
         });
     });
-
-
-    describe('#executeLevels', function () {
-
-
-        it('should call all levels when webpage loads given a matching pattern', function () {
-            var actionSpy = sinon.spy();
-            var level = new Level({
-                pattern: /http/,
-                action: actionSpy
-            });
-            var spider = new Spider();
-            spider.addLevel(level)
-                .executeLevels({
-                    url: 'http://google.com'
-                });
-            actionSpy.called.should.equal(true);
-        });
-
-
-        it('should not call any levels when webpage loads given a nonmatching pattern', function () {
-            var actionSpy = sinon.spy();
-            var level = new Level({
-                pattern: /http:\/\/yahoo.com/,
-                action: actionSpy
-            });
-            var spider = new Spider();
-            spider.addLevel(level)
-                .executeLevels({
-                    url: 'http://google.com'
-                });
-            actionSpy.called.should.equal(false);
-        });
-
-    });
-
 
     describe('#addErrorHandler', function() {
 
@@ -233,101 +172,6 @@ describe('spider', function () {
             (function () {
                 spider.stop();
             }).should.not.throw(Error);
-        });
-
-
-        it('should be called automatically when there is no more to be crawled', function (done) {
-            this.timeout(4000);
-            var spider = new Spider();
-            var stopSpy = sinon.spy(spider, 'stop');
-            var abc = nock('http://abc.com')
-                .get('/')
-                .reply(200, 'okidoke');
-            var def = nock('http://def.com')
-                .get('/')
-                .reply(200, 'okidokey');
-            var ghi = nock('http://ghi.com')
-                .get('/')
-                .reply(200, 'okicoke');
-
-            spider
-                .addUrl('http://abc.com/')
-                .addLevel({
-                    pattern: /abc.com/,
-                    action: function () {
-                        console.log('abc');
-                        spider.addUrl('http://def.com');
-                    }
-                })
-                .addLevel({
-                    pattern: /def.com/,
-                    action: function () {
-                        console.log('def');
-                        spider.addUrl('http://ghi.com');
-                    }
-                }).start();
-
-            spider.webpage.on('load', function (webpage) {
-                console.log('Loaded a page... %s', webpage.url);
-                if (webpage.url === 'http://ghi.com') {
-                    abc.done();
-                    def.done();
-                    ghi.done();
-                    stopSpy.called.should.equal(true);
-                    done();
-                }
-            });
-        });
-
-
-
-        it('should not be called when request are outstanding', function (done) {
-            this.timeout(10000);
-            var spider = new Spider();
-            var stopSpy = sinon.spy(spider, 'stop');
-            var aaa = nock('http://aaa.com')
-                .get('/')
-                .reply(200, 'okidoke');
-            var abc = nock('http://abc.com')
-                .get('/')
-                .delay(2000)
-                .reply(200, 'okidoke');
-            var def = nock('http://def.com')
-                .get('/')
-                .reply(200, 'okidokey');
-            var ghi = nock('http://ghi.com')
-                .get('/')
-                .reply(200, 'okicoke');
-
-            spider
-                .addUrl('http://aaa.com')
-                .addUrl('http://abc.com/')
-                .addLevel({
-                    pattern: /abc.com/,
-                    action: function () {
-                        console.log('abc');
-                        spider.addUrl('http://def.com');
-                    }
-                })
-                .addLevel({
-                    pattern: /def.com/,
-                    action: function () {
-                        console.log('def');
-                        spider.addUrl('http://ghi.com');
-                    }
-                }).start();
-
-            spider.webpage.on('load', function (webpage) {
-                console.log('Loaded a page... %s', webpage.url);
-                if (webpage.url === 'http://ghi.com') {
-                    aaa.done();
-                    abc.done();
-                    def.done();
-                    ghi.done();
-                    stopSpy.called.should.equal(true);
-                    done();
-                }
-            });
         });
     });
 });
