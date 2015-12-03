@@ -7,7 +7,7 @@ describe('spider', function () {
     var level;
 
     beforeEach(function functionName() {
-        spider = new Spider();
+        spider = Spider();
         level = {
             pattern: /http:\/\/google.com/,
             action: function () {
@@ -17,7 +17,7 @@ describe('spider', function () {
 
     it('should be ok', function () {
         (function () {
-            var spider = new Spider();
+            var spider = Spider();
         }).should.not.throw(Error);
     });
 
@@ -87,14 +87,14 @@ describe('spider', function () {
     describe('#addErrorHandler', function() {
 
         it('should throw an error given a non existant handler', function() {
-            var spider = new Spider();
+            var spider = Spider();
             (function () {
                 spider.addErrorHandler(null);
             }).should.throw(Error);
         });
 
         it('should throw an error given a non function handler', function() {
-            var spider = new Spider();
+            var spider = Spider();
             (function () {
                 spider.addErrorHandler('I am a string');
             }).should.throw(Error);
@@ -106,7 +106,7 @@ describe('spider', function () {
 
         it('should stop the unit when called', function () {
             var clock = sinon.useFakeTimers();
-            var spider = new Spider();
+            var spider = Spider();
             var crawlSpy = sinon.spy(spider, 'crawl');
             spider.start();
             spider.stop();
@@ -116,7 +116,7 @@ describe('spider', function () {
         });
 
         it('should not throw an error when called on a non started unit.', function () {
-            var spider = new Spider();
+            var spider = Spider();
             (function () {
                 spider.stop();
             }).should.not.throw(Error);
