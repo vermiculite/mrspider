@@ -21,45 +21,6 @@ describe('spider', function () {
         }).should.not.throw(Error);
     });
 
-
-    describe('#start', function () {
-
-        it('should return the instance of spider', function () {
-            var returns = spider.start();
-            returns.should.equal(spider);
-        });
-
-        it('should start a timer', function () {
-            var setIntervalSpy = sinon.spy(global, 'setInterval');
-            spider.start();
-            setIntervalSpy.called.should.equal(true);
-            setInterval.restore();
-        });
-
-        it('should start a timer to fire every second', function () {
-            var setIntervalSpy = sinon.spy(global, 'setInterval');
-            spider.start();
-            setIntervalSpy.called.should.equal(true);
-            var firstCall = setIntervalSpy.args[0];
-            firstCall[1].should.equal(1000);
-            setInterval.restore();
-        });
-
-        it('should start a timer', function () {
-            var setIntervalSpy = sinon.spy(global, 'setInterval');
-            spider.start();
-            setIntervalSpy.called.should.equal(true);
-            setInterval.restore();
-        });
-
-        it('should start a timer with the crawl function', function () {
-            var setIntervalSpy = sinon.spy(global, 'setInterval');
-            spider.start();
-            setIntervalSpy.called.should.equal(true);
-            setInterval.restore();
-        });
-    });
-
     describe('#addUrl', function () {
 
         it('should return a spider instance', function () {
@@ -100,26 +61,5 @@ describe('spider', function () {
             }).should.throw(Error);
         });
 
-    });
-
-    describe('#stop', function () {
-
-        it('should stop the unit when called', function () {
-            var clock = sinon.useFakeTimers();
-            var spider = Spider();
-            var crawlSpy = sinon.spy(spider, 'crawl');
-            spider.start();
-            spider.stop();
-            clock.tick(2000);
-            crawlSpy.called.should.equal(false);
-            clock.restore();
-        });
-
-        it('should not throw an error when called on a non started unit.', function () {
-            var spider = Spider();
-            (function () {
-                spider.stop();
-            }).should.not.throw(Error);
-        });
     });
 });

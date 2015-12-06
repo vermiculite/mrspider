@@ -5,7 +5,7 @@ describe('Spider', function() {
         var spy = sinon.spy();
         spider.use(spy);
         spider.addUrl('http://wwww.abc.com');
-        spider.start();
+        spider.crawl();
         setImmediate(function() {
             spy.calledOnce.should.equal(true);
             var firstArgs = spy.firstCall.args;
