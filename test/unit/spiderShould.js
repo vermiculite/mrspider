@@ -43,23 +43,46 @@ describe('spider', function () {
             spider.urls.next.restore();
         });
 
+        it('should call delayed crawl after all', function () {
+           var spider = Spider();
+            spider.use(function(page, spider, next) {
+                next();
+            });
+            var spy = sinon.spy(spider, 'delayedCrawl');
+            spider.crawl();
+            setImmediate(function() {
+                spy.called.should.equal(true);
+            });
+
+        });
+
     });
 
-    describe('#addErrorHandler', function() {
+    describe('#addErrorHandler', function () {
 
-        it('should throw an error given a non existant handler', function() {
+        it('should throw an error given a non existant handler', function () {
             var spider = Spider();
             (function () {
                 spider.addErrorHandler(null);
             }).should.throw(Error);
         });
 
-        it('should throw an error given a non function handler', function() {
+        it('should throw an error given a non function handler', function () {
             var spider = Spider();
             (function () {
                 spider.addErrorHandler('I am a string');
             }).should.throw(Error);
         });
 
+    });
+
+    describe('#delayedCrawl', function () {
+
+        it('should call crawl after one second.', function (done) {
+            this.timeout(2000);
+            var spider = Spider();
+            spider.crawl = done;
+            spider.delayedCrawl();
+        });
     });
 });

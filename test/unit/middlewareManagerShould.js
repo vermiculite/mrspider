@@ -1,7 +1,13 @@
 "use strict";
-var middlewareManager = require('../../lib/middlewareManager')();
+var MiddlewareManager = require('../../lib/middlewareManager');
 
 describe('middlewareManager', function() {
+
+    var middlewareManager;
+
+    beforeEach(function() {
+        middlewareManager = MiddlewareManager();
+    });
 
     describe('#use', function() {
 
@@ -25,13 +31,28 @@ describe('middlewareManager', function() {
     });
 
     describe('#execute', function() {
-        var first = 'first';
-        var second = 'second';
-        var spy = sinon.spy();
-        middlewareManager.use(spy);
-        middlewareManager.execute(first, second);
-        spy.calledOnce.should.equal(true);
-        spy.firstCall.args[0].should.equal(first);
-        spy.firstCall.args[1].should.equal(second);
+
+        it('should call the function in the middleware with the correct arguments.', function() {
+            var first = 'first';
+            var second = 'second';
+            var spy = sinon.spy();
+            middlewareManager.use(spy);
+            middlewareManager.execute(first, second);
+            setImmediate(function() {
+                spy.calledOnce.should.equal(true);
+                spy.firstCall.args[0].should.equal(first);
+                spy.firstCall.args[1].should.equal(second);
+            });
+
+        });
+
+        it('should call the callback after executing all middleware.', function(done) {
+            var first = 'first';
+            var second = 'second';
+            middlewareManager.use(function(page, spider, next) {
+                next();
+            });
+            middlewareManager.execute(first, second, done);
+        });
     });
 });
