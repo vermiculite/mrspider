@@ -27,6 +27,17 @@ describe('spider', function () {
             var returns = spider.addUrl();
             returns.should.equal(spider);
         });
+
+        it('should construct a full url given a baseUrl and a path', function() {
+            var spider = Spider({
+                baseUrl: 'http://www.fotocasa.es'
+            });
+            var path = '/garaje/barcelona-capital/puerta-automatica-la-sagrera-135229622';
+            var spy = sinon.spy(spider.urls, 'add');
+            spider.addUrl(path);
+
+            spy.calledWith('http://www.fotocasa.es/garaje/barcelona-capital/puerta-automatica-la-sagrera-135229622').should.equal(true);
+        });
     });
 
     describe('#crawl', function () {
