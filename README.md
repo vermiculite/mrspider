@@ -6,6 +6,8 @@
 # Mr Spider
 ## Crawl the web politely.
 
+[![Join the chat at https://gitter.im/vermiculite/mrspider](https://badges.gitter.im/vermiculite/mrspider.svg)](https://gitter.im/vermiculite/mrspider?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ```js
 
 var Spider = require('mrspider');
