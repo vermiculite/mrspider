@@ -28,6 +28,14 @@ describe('spider', function () {
             returns.should.equal(spider);
         });
 
+        it('should add a url given a call to addUrl', function() {
+            var spider = new Spider();
+            spider.addUrl('http://abc.com');
+            spider.urls.hasNext().should.equal(true);
+            spider.urls.next().should.equal('http://abc.com');
+
+        });
+
         it('should construct a full url given a baseUrl and a path', function() {
             var spider = Spider({
                 baseUrl: 'http://www.fotocasa.es'
