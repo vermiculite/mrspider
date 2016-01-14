@@ -20,11 +20,14 @@ $ npm i mrspider --save
 
 ## Middleware
 
-### Fetch the page
+Fetch the page
+
 [mrspider request](https://github.com/vermiculite/mrspider-request)
 
-### Parse DOM
+Parse DOM
+
 [mrspider cheerio](https://github.com/vermiculite/mrspider-cheerio)
+
 [mrspider JSDOM](https://github.com/vermiculite/mrspider-jsdom)
 
 ## Features
