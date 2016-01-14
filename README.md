@@ -18,6 +18,15 @@ $ npm i mrspider --save
 ## Example
 [An example for parking data](https://github.com/vermiculite/mrspider-parking-example)
 
+## Middleware
+
+### Fetch the page
+[mrspider request](https://github.com/vermiculite/mrspider-request)
+
+### Parse DOM
+[mrspider cheerio](https://github.com/vermiculite/mrspider-cheerio)
+[mrspider JSDOM](https://github.com/vermiculite/mrspider-jsdom)
+
 ## Features
 
   * Super simple api.
