@@ -20,15 +20,33 @@ $ npm i mrspider --save
 
 ## Middleware
 
-Fetch the page
+####Fetch the page
 
 [mrspider request](https://github.com/vermiculite/mrspider-request)
 
-Parse DOM
+####Parse DOM
 
 [mrspider cheerio](https://github.com/vermiculite/mrspider-cheerio)
 
 [mrspider JSDOM](https://github.com/vermiculite/mrspider-jsdom)
+
+####Parse Data
+
+[mrspider regex data extractor](https://github.com/vermiculite/mrspider-regex-data-extractor)
+
+[mrspider css data extractor](https://github.com/vermiculite/mrspider-css-data-extractor)
+
+[mrspider css links](https://github.com/vermiculite/mrspider-css-links)
+
+[mrspoder image extraction](https://github.com/vermiculite/mrspider-css-image-extraction)
+
+####Data validation
+
+[mrspider validator](https://github.com/vermiculite/mrspider-validator)
+
+####Data persistence
+
+[mrspider mongodb persister](https://github.com/vermiculite/mrspider-mongodb-persister)
 
 ## Features
 
