@@ -18,7 +18,7 @@ describe('spider', function () {
 
         it('should be retrieved from stream', function(done) {
             spider.addUrl('http://abc.com');
-            var stream = spider.crawl();
+            var stream = spider.createReadStream();
             var datas = [];
             stream.on('data', function(data) {
                 datas.push(data);
@@ -26,7 +26,7 @@ describe('spider', function () {
             stream.on('end', function() {
                 datas.length.should.equal(1);
                 var data = datas[0];
-                data.url.should.equal('http://abc.com');
+                data.url.should.equal('http://abc.com/');
                 done();
             })
         });
@@ -46,7 +46,7 @@ describe('spider', function () {
 
             var datas = [];
 
-            var stream = spider.crawl();
+            var stream = spider.createReadStream();
 
             stream.on('data', function(data) {
                 datas = [...datas, data];
@@ -54,8 +54,8 @@ describe('spider', function () {
 
             stream.on('end', function() {
                 datas.length.should.equal(10);
-                datas[0].url.should.equal('http://abc1.com');
-                datas[9].url.should.equal('http://abc10.com');
+                datas[0].url.should.equal('http://abc1.com/');
+                datas[9].url.should.equal('http://abc10.com/');
                 done();
             });
         });
@@ -65,7 +65,7 @@ describe('spider', function () {
             var extraUrl = 'http://abc.com/2';
             var urls = [];
 
-            var stream = spider.crawl();
+            var stream = spider.createReadStream();
 
             stream.on('data', function(data) {
                 if(extraUrl) {
@@ -81,5 +81,25 @@ describe('spider', function () {
                 done();
             });
         });
+
+        it('should get the full url using base url and relative url', function(done) {
+            var spider = new Spider({
+                baseUrl: 'http://abc.com'
+            });
+
+            spider.addUrl('/con');
+
+            var stream = spider.createReadStream();
+            var urls = [];
+            stream.on('data', function(data) {
+                urls = [...urls, data.url];
+            });
+
+            stream.on('end', function() {
+                urls.should.deep.equal(['http://abc.com/con']);
+                done();
+            });
+        });
+
     })
 });
