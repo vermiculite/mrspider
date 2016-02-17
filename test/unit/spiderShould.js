@@ -4,104 +4,82 @@ var Spider = require('../../lib/index');
 describe('spider', function () {
 
     var spider;
-    var level;
+    var validConfig;
 
-    beforeEach(function functionName() {
-        spider = Spider();
-        level = {
-            pattern: /http:\/\/google.com/,
-            action: function () {
-            }
-        }
+    beforeEach(function() {
+        validConfig = {};
+        spider = Spider(validConfig);
     });
 
-    it('should be ok', function () {
-        (function () {
-            var spider = Spider();
-        }).should.not.throw(Error);
-    });
 
-    describe('#addUrl', function () {
+    describe('#addUrl', function() {
 
-        it('should return a spider instance', function () {
-            var returns = spider.addUrl();
-            returns.should.equal(spider);
-        });
+        this.timeout(20000);
 
-        it('should add a url given a call to addUrl', function() {
-            var spider = new Spider();
+        it('should be retrieved from stream', function(done) {
             spider.addUrl('http://abc.com');
-            spider.urls.hasNext().should.equal(true);
-            spider.urls.next().should.equal('http://abc.com');
-
-        });
-
-        it('should construct a full url given a baseUrl and a path', function() {
-            var spider = Spider({
-                baseUrl: 'http://www.fotocasa.es'
+            var stream = spider.crawl();
+            var datas = [];
+            stream.on('data', function(data) {
+                datas.push(data);
             });
-            var path = '/garaje/barcelona-capital/puerta-automatica-la-sagrera-135229622';
-            var spy = sinon.spy(spider.urls, 'add');
-            spider.addUrl(path);
-
-            spy.calledWith('http://www.fotocasa.es/garaje/barcelona-capital/puerta-automatica-la-sagrera-135229622').should.equal(true);
-        });
-    });
-
-    describe('#crawl', function () {
-
-        it('should return an instance of spider', function () {
-            var returns = spider.crawl()
-            returns.should.equal(spider);
+            stream.on('end', function() {
+                datas.length.should.equal(1);
+                var data = datas[0];
+                data.url.should.equal('http://abc.com');
+                done();
+            })
         });
 
-        it('should ask for the next url', function () {
-            var nextSpy = sinon.spy(spider.urls, 'next');
-            spider.crawl();
-            nextSpy.called.should.equal(true);
-            spider.urls.next.restore();
-        });
 
-        it('should call delayed crawl after all', function () {
-           var spider = Spider();
-            spider.use(function(page, spider, next) {
-                next();
-            });
-            var spy = sinon.spy(spider, 'delayedCrawl');
-            spider.crawl();
-            setImmediate(function() {
-                spy.called.should.equal(true);
+        it('should retrieve all from the stream if #addUrl called many times...', function(done) {
+            spider.addUrl('http://abc1.com');
+            spider.addUrl('http://abc2.com');
+            spider.addUrl('http://abc3.com');
+            spider.addUrl('http://abc4.com');
+            spider.addUrl('http://abc5.com');
+            spider.addUrl('http://abc6.com');
+            spider.addUrl('http://abc7.com');
+            spider.addUrl('http://abc8.com');
+            spider.addUrl('http://abc9.com');
+            spider.addUrl('http://abc10.com');
+
+            var datas = [];
+
+            var stream = spider.crawl();
+
+            stream.on('data', function(data) {
+                datas = [...datas, data];
             });
 
+            stream.on('end', function() {
+                datas.length.should.equal(10);
+                datas[0].url.should.equal('http://abc1.com');
+                datas[9].url.should.equal('http://abc10.com');
+                done();
+            });
         });
 
-    });
+        it('should process all urls even those added during processing', function(done) {
+            spider.addUrl('http://abc.com/1');
+            var extraUrl = 'http://abc.com/2';
+            var urls = [];
 
-    describe('#addErrorHandler', function () {
+            var stream = spider.crawl();
 
-        it('should throw an error given a non existant handler', function () {
-            var spider = Spider();
-            (function () {
-                spider.addErrorHandler(null);
-            }).should.throw(Error);
+            stream.on('data', function(data) {
+                if(extraUrl) {
+                    data.spider.addUrl(extraUrl);
+                    extraUrl = false;
+                }
+                urls = [...urls, data.url];
+            });
+
+            stream.on('end', function() {
+                console.log(urls);
+                urls.length.should.equal(2);
+                done();
+            });
         });
-
-        it('should throw an error given a non function handler', function () {
-            var spider = Spider();
-            (function () {
-                spider.addErrorHandler('I am a string');
-            }).should.throw(Error);
-        });
-
-    });
-
-    describe('#delayedCrawl', function () {
-
-        it('should call crawl after one second.', function (done) {
-            this.timeout(2000);
-            var spider = Spider();
-            spider.crawl = done;
-            spider.delayedCrawl();
-        });
-    });
+    })
 });

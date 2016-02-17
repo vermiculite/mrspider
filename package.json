@@ -38,7 +38,8 @@
     "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
   },
   "dependencies": {
-    "async": "^1.5.0"
+    "async": "^1.5.0",
+    "from2": "^2.1.1"
   },
   "devDependencies": {
     "chai": "^3.0.0",
