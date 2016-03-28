@@ -51,7 +51,7 @@ $ npm i mrspider --save
 ## Features
 
   * Super simple api.
-  * Middleware architecture allows complete customisation.
+  * Streaming architecture allows complete customisation.
   * Use the full power of JavaScript giving you great flexibility.
 
 ## Tests
