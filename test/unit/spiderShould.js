@@ -1,5 +1,5 @@
 'use strict';
-var Spider = require('../../lib/index');
+var Spider = require('../..').Spider;
 
 describe('spider', function () {
 
