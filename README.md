@@ -18,17 +18,45 @@ $ npm i mrspider --save
 ## Example
 [An example for parking data](https://github.com/vermiculite/mrspider-parking-example)
 
-## Middleware
+## Included streams
 
 ####Fetch the page
 
 [mrspider request](https://github.com/vermiculite/mrspider-request)
 
+```js
+let spider = mr.Spider({
+    baseUrl: 'http://www.idealista.com'
+});
+let mr = require('mrspider');
+let request = mr.request();
+
+spider.createReadStream.pipe(request);
+```
+
 ####Parse DOM
 
 [mrspider cheerio](https://github.com/vermiculite/mrspider-cheerio)
 
+```js
+let spider = mr.Spider({
+    baseUrl: 'http://www.idealista.com'
+});
+let mr = require('mrspider');
+let mrspiderCheerio = mr.cheerio;
+spider.createReadStream().pipe(...).pipe(cheerio);
+```
+
 [mrspider JSDOM](https://github.com/vermiculite/mrspider-jsdom)
+
+```js
+let spider = mr.Spider({
+    baseUrl: 'http://www.idealista.com'
+});
+let mr = require('mrspider');
+let jsdom = mr.jsdom;
+spider.createReadStream().pipe(...).pipe(jsdom);
+```
 
 ####Parse Data
 
