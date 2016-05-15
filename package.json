@@ -10,7 +10,7 @@
     "spider",
     "spidering"
   ],
-  "version": "5.1.2",
+  "version": "5.1.3",
   "author": "Sean Hayes <seanowenhayes@gmail.com>",
   "license": "MIT",
   "main": "./index",
@@ -39,11 +39,8 @@
   },
   "dependencies": {
     "async": "^1.5.0",
-    "chai": "^3.5.0",
     "coveralls": "^2.11.9",
     "from2": "^2.1.1",
-    "istanbul": "^0.3.22",
-    "mocha": "^2.4.5",
     "mrspider-cheerio": "^1.1.0",
     "mrspider-css-data-extractor": "^1.1.0",
     "mrspider-css-image-extraction": "^1.1.0",
@@ -52,16 +49,14 @@
     "mrspider-mongodb-persister": "^1.1.0",
     "mrspider-regex-data-extractor": "^1.1.0",
     "mrspider-request": "^2.1.0",
-    "mrspider-validator": "^1.1.0",
-    "nock": "^2.18.2",
-    "sinon": "^1.17.3"
+    "mrspider-validator": "^1.1.0"
   },
   "devDependencies": {
     "chai": "^3.0.0",
     "coveralls": "^2.11.3",
     "istanbul": "^0.3.17",
     "mocha": "^2.2.5",
-    "nock": "^2.6.0",
+    "nock": "^2.6.0", 
     "sinon": "^1.15.3"
   }
 }
