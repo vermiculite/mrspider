@@ -3,8 +3,9 @@ var Spider = require('../..').Spider;
 
 describe('spider', function () {
 
-    var spider;
-    var validConfig;
+    let spider;
+    let validConfig;
+
 
     beforeEach(function() {
         validConfig = {};
@@ -12,12 +13,14 @@ describe('spider', function () {
     });
 
 
-    describe('#addUrl', function() {
+    describe('#addUrls', function() {
 
         this.timeout(20000);
 
         it('should be retrieved from stream', function(done) {
-            spider.addUrl('http://abc.com');
+            let url = 'http://abc.com';
+            spider.addUrls([url]);
+            spider.start();
             var stream = spider.createReadStream();
             var datas = [];
             stream.on('data', function(data) {
@@ -25,8 +28,8 @@ describe('spider', function () {
             });
             stream.on('end', function() {
                 datas.length.should.equal(1);
-                var data = datas[0];
-                data.url.should.equal('http://abc.com/');
+                var data = datas[url];
+                data.url.should.equal(url);
                 done();
             })
         });
