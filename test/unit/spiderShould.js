@@ -1,10 +1,13 @@
-'use strict';
-var Spider = require('../..').Spider;
+
+import Spider from '../../lib/Spider'
+import { should } from 'chai';
+
+should(); 
 
 describe('spider', function () {
 
-    var spider;
-    var validConfig;
+    let spider;
+    let validConfig;
 
     beforeEach(function() {
         validConfig = {};

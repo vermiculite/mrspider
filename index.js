@@ -1,15 +1,12 @@
-'use strict';
+import Spider from './lib/Spider';
+import cheerio from 'mrspider-cheerio';
+import validator from 'mrspider-validator';
+import jsdom from 'mrspider-jsdom';
+import request from 'mrspider-request';
+import cssDataExtractor from 'mrspider-css-data-extractor';
+import regexDataExtractor from 'mrspider-regex-data-extractor';
+import cssLinks from 'mrspider-css-links';
+import mongoDbPersister from 'mrspider-mongodb-persister';
+import cssImageExtraction from 'mrspider-css-image-extraction';
 
-exports.Spider = require('./lib');
-
-exports.cheerio = require('mrspider-cheerio');
-exports.validator = require('mrspider-validator');
-exports.jsdom = require('mrspider-jsdom');
-exports.request = require('mrspider-request');
-exports.cssDataExtractor = require('mrspider-css-data-extractor');
-exports.regexDataExtractor = require('mrspider-regex-data-extractor');
-exports.cssLinks = require('mrspider-css-links');
-exports.mongoDbPersister = require('mrspider-mongodb-persister');
-exports.cssImageExtraction = require('mrspider-css-image-extraction');
-
-
+export { Spider, cheerio, validator, jsdom, request, cssDataExtractor, regexDataExtractor, cssLinks, mongoDbPersister, cssImageExtraction } 

@@ -1,5 +1,6 @@
 {
   "name": "mrspider",
+  "type": "module",
   "productName": "Mr Spider",
   "description": "simple polite crawling of the web.",
   "tags": [
@@ -32,10 +33,10 @@
     "screenscraper"
   ],
   "scripts": {
-    "test": "mocha --require test/setup --recursive",
+    "test": "mocha --recursive",
     "test-watch": "mocha --require test/setup --recursive --watch",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --require test/setup --reporter dot --check-leaks test/ --recursive",
-    "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
+    "cover": "nyc npm run test"
   },
   "dependencies": {
     "coveralls": "3.1.1",
@@ -52,9 +53,9 @@
   },
   "devDependencies": {
     "chai": "5.2.1",
-    "istanbul": "^0.4.5",
     "mocha": "11.7.1",
-    "nock": "14.0.5", 
+    "nock": "14.0.5",
+    "nyc": "^17.1.0",
     "sinon": "21.0.0"
   }
 }
