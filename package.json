@@ -51,7 +51,7 @@
     "mrspider-validator": "^1.1.0"
   },
   "devDependencies": {
-    "chai": "^3.0.0",
+    "chai": "5.2.1",
     "istanbul": "^0.4.5",
     "mocha": "11.7.1",
     "nock": "14.0.5", 
