@@ -12,7 +12,7 @@
 ## Installation
 
 ```bash
-$ npm i mrspider --save
+npm i mrspider --save
 ```
 
 ## Example
@@ -20,7 +20,7 @@ $ npm i mrspider --save
 
 ## Included streams
 
-####Fetch the page
+#### Fetch the page
 
 [mrspider request](https://github.com/vermiculite/mrspider-request)
 
@@ -34,7 +34,7 @@ let request = mr.request();
 spider.createReadStream.pipe(request);
 ```
 
-####Parse DOM
+#### Parse DOM
 
 [mrspider cheerio](https://github.com/vermiculite/mrspider-cheerio)
 
@@ -58,7 +58,7 @@ let jsdom = mr.jsdom;
 spider.createReadStream().pipe(...).pipe(jsdom);
 ```
 
-####Parse Data
+#### Parse Data
 
 [mrspider regex data extractor](https://github.com/vermiculite/mrspider-regex-data-extractor)
 
